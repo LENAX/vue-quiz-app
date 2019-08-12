@@ -1,6 +1,9 @@
 <template>
-  <div class="container">
-    <h1>Quiz App</h1>
+  <div class="mt-3">
+    <b-nav tabs>
+      <b-nav-item disabled><h4>Trivia</h4></b-nav-item>
+      <b-nav-item disabled>Counter: 0 / 10</b-nav-item>
+    </b-nav>
   </div>
 </template>
 

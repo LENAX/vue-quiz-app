@@ -9,7 +9,7 @@
             <hr class="my-2">
             <b-list-group>
               <b-list-group-item
-                v-for="(answer, index) in answers"
+                v-for="(answer, index) in shuffled_answers"
                 :key="index"
                 @click.prevent="select_answer(index)"
                 :class="get_select_class(index)"
@@ -66,6 +66,12 @@
         }
 
         return element_class
+      },
+      shuffle_answers() {
+        let answers = [...this.current_question.incorrect_answers,
+                       this.current_question.correct_answer]
+        this.shuffled_answers = _.shuffle(answers)
+        this.correctIndex = this.shuffledAnswers.indexOf(this.currentQuestion.correct_answer)
       }
     },
     watch: {
@@ -74,6 +80,7 @@
         handler() {
           this.selected_index = null
           this.answered = false
+          this.shuffle_answers()
         }
       }
     },

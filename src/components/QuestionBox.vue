@@ -11,6 +11,7 @@
               <b-list-group-item
                 v-for="(answer, index) in answers"
                 :key="index"
+                @click.prevent="select_answer(index)"
               >
                 {{ answer }}
               </b-list-group-item>
@@ -40,10 +41,15 @@
     },
     data: function() {
       return {
-        selectedIndex: null,
+        selected_index: null,
         correctIndex: null,
         shuffled_answers: [],
         answered: false
+      }
+    },
+    methods: {
+      select_answer(index) {
+        this.selected_index = index
       }
     },
     computed: {

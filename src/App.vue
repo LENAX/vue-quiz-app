@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <Header />
-    <QuestionBox 
+    <QuestionBox
+      :v-if="question_list.length"
       :current_question="question_list[index]"
       :next="next"
     />

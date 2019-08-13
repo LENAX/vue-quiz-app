@@ -45,24 +45,13 @@
         shuffled_answers: [],
         answered: false
       }
-    }
+    },
     computed: {
       answers() {
         let answers = [...this.current_question.incorrect_answers]
         answers.push(this.current_question.correct_answer)
         return answers
       }
-    },
-    watch: {
-      current_question: {
-        immediate: true,
-        handler() {
-          this.selectedIndex = null
-          this.answered = false
-          // this.shuffleAnswers()
-        }
-      }
-
     }
   }
 </script>

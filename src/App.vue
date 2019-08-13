@@ -3,6 +3,7 @@
     <Header />
     <QuestionBox 
       :current_question="question_list[index]"
+      :next="next"
     />
   </div>
 </template>

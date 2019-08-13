@@ -11,14 +11,18 @@
               <b-list-group-item
                 v-for="(answer, index) in answers"
                 :key="index"
-
               >
                 {{ answer }}
               </b-list-group-item>
             </b-list-group>
             <hr class="my-3">
-            <b-button variant="primary" href="#">Submit</b-button>
-            <b-button variant="success" href="#">Next</b-button>
+            <b-button variant="primary">Submit</b-button>
+            <b-button 
+              variant="success"
+              @click="next"
+            >
+              Next
+            </b-button>
           </b-jumbotron>
         </b-col>
       </b-row>
@@ -31,14 +35,34 @@
 
   export default {
     props: {
-      current_question: Object
+      current_question: Object,
+      next: Function
     },
+    data: function() {
+      return {
+        selectedIndex: null,
+        correctIndex: null,
+        shuffled_answers: [],
+        answered: false
+      }
+    }
     computed: {
       answers() {
         let answers = [...this.current_question.incorrect_answers]
         answers.push(this.current_question.correct_answer)
         return answers
       }
+    },
+    watch: {
+      current_question: {
+        immediate: true,
+        handler() {
+          this.selectedIndex = null
+          this.answered = false
+          // this.shuffleAnswers()
+        }
+      }
+
     }
   }
 </script>

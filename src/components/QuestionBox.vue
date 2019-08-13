@@ -12,6 +12,7 @@
                 v-for="(answer, index) in answers"
                 :key="index"
                 @click.prevent="select_answer(index)"
+                :class="get_select_class(index)"
               >
                 {{ answer }}
               </b-list-group-item>
@@ -50,6 +51,30 @@
     methods: {
       select_answer(index) {
         this.selected_index = index
+      },
+      get_select_class(index) {
+        let element_class = ''
+
+        if (!this.answered && this.selected_index === index) {
+          element_class = "selected"
+        } else if (this.answered && index === this.correctIndex) {
+          element_class = "correct"
+        } else if (this.answered && 
+                   this.selected_index === index &&
+                   this.correctIndex !== index) {
+          element_class = "incorrect"
+        }
+
+        return element_class
+      }
+    },
+    watch: {
+      current_question: {
+        immediate: true,
+        handler() {
+          this.selected_index = null
+          this.answered = false
+        }
       }
     },
     computed: {
@@ -65,6 +90,14 @@
 <style>
   .btn {
     margin: 0 5px;
+  }
+
+  .list-group-item:hover {
+    background: #e0e0e0;
+  }
+
+  .selected {
+    background-color: #80deea !important;
   }
 
 </style>

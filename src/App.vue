@@ -10,6 +10,7 @@
       :next="next"
       :correct_count="correct_count"
       :increase_correct_count="increase_correct_count"
+      :index="index"
     />
   </div>
 </template>
@@ -38,19 +39,26 @@ export default {
     next() {
       if (this.index < this.total_questions - 1) {
         this.index++
+      } else {
+        this.fetch_questions()
       }
     },
     increase_correct_count() {
       this.correct_count++
+    },
+    fetch_questions() {
+      this.axios.get(
+        'https://opentdb.com/api.php?amount=10'
+      ).then((response) => {
+        this.question_list = response.data.results
+        this.total_questions = response.data.results.length
+      }).then(() => {
+        this.index = 0
+      })
     }
   },
   mounted: function() {
-    this.axios.get(
-      'https://opentdb.com/api.php?amount=10'
-    ).then((response) => {
-      this.question_list = response.data.results
-      this.total_questions = response.data.results.length
-    })
+    this.fetch_questions()
   }
 }
 </script>

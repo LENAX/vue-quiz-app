@@ -5,7 +5,11 @@
         <b-col cols="6">
           <div class="mt-3"></div>
           <b-jumbotron>
-            <template slot="lead">{{ current_question.question }}</template>
+            
+            <template slot="lead">
+              <h5 class="pull-left">Question: {{index+1}}</h5>
+              {{ current_question.question }}
+            </template>
             <hr class="my-2">
             <b-list-group>
               <b-list-group-item
@@ -46,7 +50,8 @@
       current_question: Object,
       next: Function,
       increase_correct_count: Function,
-      correct_count: Number
+      correct_count: Number,
+      index: Number
     },
     data: function() {
       return {

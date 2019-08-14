@@ -46,8 +46,6 @@ export default {
       } 
 
       if (this.index >= this.total_questions) {
-        // this.total_questions = 0
-        console.log("Loading more questions")
         this.fetch_questions()
       }
     },
@@ -64,7 +62,6 @@ export default {
           this.question_list.push(data)
         })
         this.total_questions = this.question_list.length
-        console.log(this.question_list)
       })
     }
   },

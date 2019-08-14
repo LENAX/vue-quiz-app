@@ -44,6 +44,7 @@
     props: {
       current_question: Object,
       next: Function,
+      increase_correct_count: Function,
       correct_count: Number
     },
     data: function() {
@@ -51,13 +52,15 @@
         selected_index: null,
         correct_index: null,
         shuffled_answers: [],
-        answered: false
+        answered: false,
+        submission_allowed: false
       }
     },
     methods: {
       select_answer(index) {
         this.selected_index = index
       },
+
       get_select_class(index) {
         let element_class = ''
 
@@ -73,17 +76,24 @@
 
         return element_class
       },
+
+      get_submit_button_class() {
+
+      },
+
       shuffle_answers() {
         let answers = [...this.current_question.incorrect_answers,
                        this.current_question.correct_answer]
         this.shuffled_answers = _.shuffle(answers)
         this.correct_index = this.shuffled_answers.indexOf(this.current_question.correct_answer)
       },
+      
       check_submission() {
-        if (this.answered && this.selected_index !== null) {
+        this.answered  = this.selected_index !== null
+        if (this.answered) {
           let answer_correct = this.selected_index === this.correct_index
           if (answer_correct) {
-            this.correct_count++
+            this.increase_correct_count()
           }
         }
       }
@@ -119,6 +129,10 @@
 
   .selected {
     background-color: #80deea !important;
+  }
+
+  .correct {
+    background-color: #CCFF99 !important;
   }
 
 </style>

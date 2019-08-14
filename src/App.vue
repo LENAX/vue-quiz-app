@@ -9,6 +9,7 @@
       :current_question="question_list[index]"
       :next="next"
       :correct_count="correct_count"
+      :increase_correct_count="increase_correct_count"
     />
   </div>
 </template>
@@ -38,6 +39,9 @@ export default {
       if (this.index < this.total_questions - 1) {
         this.index++
       }
+    },
+    increase_correct_count() {
+      this.correct_count++
     }
   },
   mounted: function() {

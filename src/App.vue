@@ -43,8 +43,11 @@ export default {
     next() {
       if (this.index < this.total_questions) {
         this.index++
-      } else {
+      } 
+
+      if (this.index >= this.total_questions) {
         // this.total_questions = 0
+        console.log("Loading more questions")
         this.fetch_questions()
       }
     },
@@ -52,13 +55,16 @@ export default {
       this.correct_count++
     },
     fetch_questions() {
-      this.axios.get(
-        'https://opentdb.com/api.php?amount=10'
-      ).then((response) => {
-        this.question_list = response.data.results
-        this.total_questions += response.data.results.length
+      fetch("https://opentdb.com/api.php?amount=10", {
+        method: 'get'
+      }).then((response) => {
+        return response.json()
+      }).then((jsonData) => {
+        jsonData.results.forEach((data) => {
+          this.question_list.push(data)
+        })
+        this.total_questions = this.question_list.length
         console.log(this.question_list)
-        console.log(this.total_questions)
       })
     }
   },

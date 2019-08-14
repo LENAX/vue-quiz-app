@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <Header />
+    <Header 
+      :total_questions="total_questions"
+      :correct_count="correct_count"
+    />
     <QuestionBox
       v-if="question_list.length"
       :current_question="question_list[index]"
       :next="next"
+      :correct_count="correct_count"
     />
   </div>
 </template>
@@ -25,7 +29,8 @@ export default {
     return {
       question_list: [],
       index: 0,
-      total_questions: 0
+      total_questions: 0,
+      correct_count: 0
     }
   },
   methods: {

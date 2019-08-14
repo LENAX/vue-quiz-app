@@ -18,7 +18,12 @@
               </b-list-group-item>
             </b-list-group>
             <hr class="my-3">
-            <b-button variant="primary">Submit</b-button>
+            <b-button 
+              variant="primary"
+              @click="check_submission"
+            >
+              Submit
+            </b-button>
             <b-button 
               variant="success"
               @click="next"
@@ -38,12 +43,13 @@
   export default {
     props: {
       current_question: Object,
-      next: Function
+      next: Function,
+      correct_count: Number
     },
     data: function() {
       return {
         selected_index: null,
-        correctIndex: null,
+        correct_index: null,
         shuffled_answers: [],
         answered: false
       }
@@ -57,11 +63,11 @@
 
         if (!this.answered && this.selected_index === index) {
           element_class = "selected"
-        } else if (this.answered && index === this.correctIndex) {
+        } else if (this.answered && index === this.correct_index) {
           element_class = "correct"
         } else if (this.answered && 
                    this.selected_index === index &&
-                   this.correctIndex !== index) {
+                   this.correct_index !== index) {
           element_class = "incorrect"
         }
 
@@ -71,7 +77,15 @@
         let answers = [...this.current_question.incorrect_answers,
                        this.current_question.correct_answer]
         this.shuffled_answers = _.shuffle(answers)
-        this.correctIndex = this.shuffledAnswers.indexOf(this.currentQuestion.correct_answer)
+        this.correct_index = this.shuffled_answers.indexOf(this.current_question.correct_answer)
+      },
+      check_submission() {
+        if (this.answered && this.selected_index !== null) {
+          let answer_correct = this.selected_index === this.correct_index
+          if (answer_correct) {
+            this.correct_count++
+          }
+        }
       }
     },
     watch: {

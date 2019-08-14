@@ -21,8 +21,7 @@
             <b-button 
               variant="primary"
               @click="check_submission"
-              :disabled="is_submit_button_clickable"
-              :class="is_submit_button_clickable"
+              :disabled="answered || selected_index === null"
             >
               Submit
             </b-button>
@@ -54,8 +53,7 @@
         selected_index: null,
         correct_index: null,
         shuffled_answers: [],
-        answered: false,
-        btn_disabled: null
+        answered: false
       }
     },
     methods: {
@@ -77,16 +75,6 @@
         }
 
         return element_class
-      },
-
-      is_submit_button_clickable() {
-        this.btn_disabled = ''
-
-        if (this.answered || this.selected_index === null) {
-          btn_disabled = "disabled"
-        }
-
-        return btn_disabled
       },
 
       shuffle_answers() {
@@ -145,6 +133,10 @@
 
   .correct {
     background-color: #CCFF99 !important;
+  }
+
+  .incorrect {
+    background-color: #FF0033 !important;
   }
 
 </style>

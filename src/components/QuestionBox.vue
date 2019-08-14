@@ -21,6 +21,8 @@
             <b-button 
               variant="primary"
               @click="check_submission"
+              :disabled="is_submit_button_clickable"
+              :class="is_submit_button_clickable"
             >
               Submit
             </b-button>
@@ -53,7 +55,7 @@
         correct_index: null,
         shuffled_answers: [],
         answered: false,
-        submission_allowed: false
+        btn_disabled: null
       }
     },
     methods: {
@@ -77,8 +79,14 @@
         return element_class
       },
 
-      get_submit_button_class() {
+      is_submit_button_clickable() {
+        this.btn_disabled = ''
 
+        if (this.answered || this.selected_index === null) {
+          btn_disabled = "disabled"
+        }
+
+        return btn_disabled
       },
 
       shuffle_answers() {
@@ -87,7 +95,7 @@
         this.shuffled_answers = _.shuffle(answers)
         this.correct_index = this.shuffled_answers.indexOf(this.current_question.correct_answer)
       },
-      
+
       check_submission() {
         this.answered  = this.selected_index !== null
         if (this.answered) {
@@ -121,6 +129,10 @@
 <style>
   .btn {
     margin: 0 5px;
+  }
+
+  .disabled {
+    background: grey;
   }
 
   .list-group-item:hover {

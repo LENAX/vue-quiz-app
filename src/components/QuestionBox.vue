@@ -35,6 +35,7 @@
             >
               Next
             </b-button>
+            
           </b-jumbotron>
         </b-col>
       </b-row>
@@ -51,7 +52,8 @@
       next: Function,
       increase_correct_count: Function,
       correct_count: Number,
-      index: Number
+      index: Number,
+      question_loading: Boolean
     },
     data: function() {
       return {

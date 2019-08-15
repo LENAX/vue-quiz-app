@@ -1,5 +1,10 @@
 # quiz
 
+An replicate of https://github.com/gwenf/vue-quiz
+
+# Github Page App URL
+https://lenax.github.io/vue-quiz-app/index.html
+
 ## Project setup
 ```
 npm install

@@ -45,8 +45,25 @@
 
 <script>
   import _ from 'lodash'
+  
+  import { BContainer } from 'bootstrap-vue'
+  import { BRow } from 'bootstrap-vue'
+  import { BCol } from 'bootstrap-vue'
+  import { BListGroup } from 'bootstrap-vue'
+  import { BListGroupItem } from 'bootstrap-vue'
+  import { BJumbotron } from 'bootstrap-vue'
+  import { BButton } from 'bootstrap-vue'
 
   export default {
+    components: {
+      BContainer,
+      BRow,
+      BCol,
+      BListGroup,
+      BListGroupItem,
+      BJumbotron,
+      BButton
+    },
     props: {
       current_question: Object,
       next: Function,
@@ -120,33 +137,5 @@
     }
   }
 </script>
-
-<style>
-  .btn {
-    margin: 0 5px;
-  }
-
-  .disabled {
-    background: grey;
-  }
-
-  .list-group-item:hover {
-    background: #e0e0e0;
-  }
-
-  .selected {
-    background-color: #80deea !important;
-  }
-
-  .correct {
-    background-color: #CCFF99 !important;
-  }
-
-  .incorrect {
-    background-color: #FF0033 !important;
-  }
-
-</style>
-
 
 

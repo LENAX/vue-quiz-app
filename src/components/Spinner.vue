@@ -23,3 +23,26 @@
     </b-container>
   </div>
 </template>
+
+<script>
+  import { BContainer } from 'bootstrap-vue'
+  import { BRow } from 'bootstrap-vue'
+  import { BCol } from 'bootstrap-vue'
+  import { BSpinner } from 'bootstrap-vue'
+
+  export default {
+    components: {
+      BContainer,
+      BRow,
+      BCol,
+      BSpinner
+    }
+  }
+
+</script>
+
+
+
+
+
+

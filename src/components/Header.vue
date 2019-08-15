@@ -8,12 +8,17 @@
 </template>
 
 <script>
+  import { BNav } from 'bootstrap-vue'
+  import { BNavItem } from 'bootstrap-vue'
+
   export default {
+    components: {
+      BNav,
+      BNavItem
+    },
     props: {
       correct_count: Number,
       total_questions: Number
     }
   }
 </script>
-
-<style></style>

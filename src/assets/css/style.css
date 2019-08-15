@@ -6,3 +6,27 @@
   color: #2c3e50;
   margin-top: 60px;
 }
+
+.btn {
+  margin: 0 5px;
+}
+
+.disabled {
+  background: grey;
+}
+
+.list-group-item:hover {
+  background: #e0e0e0;
+}
+
+.selected {
+  background-color: #80deea !important;
+}
+
+.correct {
+  background-color: #CCFF99 !important;
+}
+
+.incorrect {
+  background-color: #FF0033 !important;
+}
